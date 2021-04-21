@@ -35,10 +35,10 @@ main (int argc, char *argv[])
   Address serverAddress;
   ApplicationContainer sinkApps;
   uint16_t port = 4000;
-  uint32_t PacketCount = 1000;
+  uint32_t PacketCount = 10000;
   uint32_t PacketSize = 1472;
-  float duration = 60.0;
-  bool tracing = false;
+  float duration = 120.0;
+  bool tracing = true;
 
   CommandLine cmd (__FILE__);
   cmd.AddValue ("useIpv6", "Use Ipv6", useV6);
@@ -65,8 +65,9 @@ main (int argc, char *argv[])
   //
   CsmaHelper csma;
   csma.SetChannelAttribute ("DataRate", StringValue ("1000Mbps"));
-  csma.SetChannelAttribute ("Delay", TimeValue (MilliSeconds (2)));
+  csma.SetChannelAttribute ("Delay", TimeValue (MicroSeconds (2)));
   csma.SetDeviceAttribute ("Mtu", UintegerValue (1500));
+  //csma.SetQueue("ns3::DropTailQueue", "MaxSize", StringValue("1000p"));
   NetDeviceContainer d = csma.Install (n);
 
   //
@@ -112,7 +113,9 @@ main (int argc, char *argv[])
   // node one.
   //
   uint32_t MaxPacketSize = PacketSize;
-  Time interPacketInterval = Seconds (0.002);
+  //Time interPacketInterval = Seconds (1e-6);
+  //Time interPacketInterval = NanoSeconds(2000);
+  Time interPacketInterval = MicroSeconds(2);
   uint32_t maxPacketCount = PacketCount;
   UdpClientHelper client (serverAddress, port);
   client.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
@@ -167,19 +170,21 @@ main (int argc, char *argv[])
                     << t.destinationAddress << ")\n";
           std::cout << "  Tx Packets: " << i->second.txPackets << "\n";
           std::cout << "  Tx Bytes:   " << i->second.txBytes << "\n";
-          std::cout << "  TxOffered:  " << i->second.txBytes * 8.0 / 9.0 / 1024 / 1024 << " Mbps\n";
+		  double timeTakenClient =
+              i->second.timeLastTxPacket.GetSeconds () - i->second.timeFirstTxPacket.GetSeconds ();
+          std::cout << "  TxOffered:  " << i->second.txBytes * 8.0 / timeTakenClient / 1024 / 1024 << " Mbps\n";
           std::cout << "  Rx Packets: " << i->second.rxPackets << "\n";
           std::cout << "  Rx Bytes:   " << i->second.rxBytes << "\n";
 
           // Throughput
           double timeTaken =
-              i->second.timeLastRxPacket.GetSeconds () - i->second.timeFirstTxPacket.GetSeconds ();
-          double Throughput = i->second.rxBytes * 8.0 / timeTaken / 1024;
+              i->second.timeLastRxPacket.GetSeconds () - i->second.timeFirstRxPacket.GetSeconds ();
+          double Throughput = i->second.rxBytes * 8.0 / timeTaken / 1024 / 1024;
 
           std::cout << "  Throughput: " << Throughput << " Mbps\n";
           dataset.Add ((double) i->first, (double) Throughput);
-          std::cout << "  Average Jitter:  " << i->second.jitterSum / i->second.rxPackets << " s\n";
-          std::cout << "  Average Delay:  " << i->second.delaySum / i->second.rxPackets << " s\n";
+          std::cout << "  Average Jitter:  " << i->second.jitterSum.GetSeconds() / i->second.rxPackets << " s\n";
+          std::cout << "  Average Delay:  " << i->second.delaySum.GetSeconds() / i->second.rxPackets << " s\n";
           std::cout << "  Lost packets:  " << i->second.lostPackets << " \n";
           std::cout << "  Last packet sent at:  " << i->second.timeLastTxPacket.GetSeconds ()
                     << " s\n";
@@ -210,7 +215,7 @@ main (int argc, char *argv[])
           // Throughput
           double timeTaken =
               i->second.timeLastRxPacket.GetSeconds () - i->second.timeFirstTxPacket.GetSeconds ();
-          double Throughput = i->second.rxBytes * 8.0 / timeTaken / 1024;
+          double Throughput = i->second.rxBytes * 8.0 / timeTaken / 1e-6;
 
           std::cout << "  Throughput: " << Throughput << " Mbps\n";
           dataset.Add ((double) i->first, (double) Throughput);

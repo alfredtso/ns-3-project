@@ -60,8 +60,9 @@ main (int argc, char *argv[])
   //
   CsmaHelper csma;
   csma.SetChannelAttribute ("DataRate", StringValue ("1000Mbps"));
-  csma.SetChannelAttribute ("Delay", TimeValue (MilliSeconds (2)));
+  csma.SetChannelAttribute ("Delay", TimeValue (MicroSeconds (2)));
   csma.SetDeviceAttribute ("Mtu", UintegerValue (1500));
+  //csma.SetQueue("ns3::DropTailQueue", "MaxSize", StringValue("1000p"));
   NetDeviceContainer d = csma.Install (n);
 
   //
@@ -138,19 +139,23 @@ main (int argc, char *argv[])
                     << t.destinationAddress << ")\n";
           std::cout << "  Tx Packets: " << i->second.txPackets << "\n";
           std::cout << "  Tx Bytes:   " << i->second.txBytes << "\n";
-          std::cout << "  TxOffered:  " << i->second.txBytes * 8.0 / 9.0 / 1024 / 1024 << " Mbps\n";
+		  double timeTakenClient =
+              i->second.timeLastTxPacket.GetSeconds () - i->second.timeFirstTxPacket.GetSeconds ();
+          std::cout << "  TxOffered:  " << i->second.txBytes * 8.0 / timeTakenClient / 1024 / 1024 << " Mbps\n";
           std::cout << "  Rx Packets: " << i->second.rxPackets << "\n";
           std::cout << "  Rx Bytes:   " << i->second.rxBytes << "\n";
+          std::cout << "  First Rx:   " << i->second.timeFirstRxPacket.GetSeconds() << "\n";
+          std::cout << "  Last Rx:   " << i->second.timeLastRxPacket.GetSeconds() << "\n";
 
           // Throughput
           double timeTaken =
-              i->second.timeLastRxPacket.GetSeconds () - i->second.timeFirstTxPacket.GetSeconds ();
-          double Throughput = i->second.rxBytes * 8.0 / timeTaken / 1024;
+              i->second.timeLastRxPacket.GetSeconds () - i->second.timeFirstRxPacket.GetSeconds ();
+          double Throughput = i->second.rxBytes * 8.0 / timeTaken / 1024 / 1024;
 
           std::cout << "  Throughput: " << Throughput << " Mbps\n";
           dataset.Add ((double) i->first, (double) Throughput);
-          std::cout << "  Average Jitter:  " << i->second.jitterSum / i->second.rxPackets << " s\n";
-          std::cout << "  Average Delay:  " << i->second.delaySum / i->second.rxPackets << " s\n";
+          std::cout << "  Average Jitter:  " << i->second.jitterSum.GetSeconds()/ i->second.rxPackets << " s\n";
+          std::cout << "  Average Delay:  " << i->second.delaySum.GetSeconds()/ i->second.rxPackets << " s\n";
           std::cout << "  Lost packets:  " << i->second.lostPackets << " \n";
           std::cout << "  Last packet sent at:  " << i->second.timeLastTxPacket.GetSeconds ()
                     << " s\n";
@@ -180,8 +185,8 @@ main (int argc, char *argv[])
 
           // Throughput
           double timeTaken =
-              i->second.timeLastRxPacket.GetSeconds () - i->second.timeFirstTxPacket.GetSeconds ();
-          double Throughput = i->second.rxBytes * 8.0 / timeTaken / 1024;
+              i->second.timeLastTxPacket.GetSeconds () - i->second.timeFirstTxPacket.GetSeconds ();
+          double Throughput = i->second.rxBytes * 8.0 / timeTaken / 1024 / 1024;
 
           std::cout << "  Throughput: " << Throughput << " Mbps\n";
           dataset.Add ((double) i->first, (double) Throughput);

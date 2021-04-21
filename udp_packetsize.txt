@@ -1,0 +1,54 @@
+Waf: Entering directory `/home/alfred/Downloads/workspace/bake/source/ns-3.33/build'
+Waf: Leaving directory `/home/alfred/Downloads/workspace/bake/source/ns-3.33/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (0.822s)
+MaxPacketSize: 1500
+Flow ID1 (10.1.1.1 -> 10.1.1.2)
+  Tx Packets: 10000
+  Tx Bytes:   15280000
+  TxOffered:  5829.44 Mbps
+  Rx Packets: 6496
+  Rx Bytes:   9925888
+  Throughput: 652.677 Mbps
+  Average Jitter:  1.69309e-05 s
+  Average Delay:  0.0611686 s
+  Lost packets:  3505 
+  Last packet sent at:  2.02 s
+  Last packet received at:  2.12305 s
+Total Bytes Received: 9744000
+Waf: Entering directory `/home/alfred/Downloads/workspace/bake/source/ns-3.33/build'
+Waf: Leaving directory `/home/alfred/Downloads/workspace/bake/source/ns-3.33/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (0.823s)
+MaxPacketSize: 1472
+Flow ID1 (10.1.1.1 -> 10.1.1.2)
+  Tx Packets: 10000
+  Tx Bytes:   15000000
+  TxOffered:  5722.62 Mbps
+  Rx Packets: 6499
+  Rx Bytes:   9748500
+  Throughput: 776.938 Mbps
+  Average Jitter:  1.38037e-05 s
+  Average Delay:  0.0413737 s
+  Lost packets:  3501 
+  Last packet sent at:  2.02 s
+  Last packet received at:  2.10275 s
+Total Bytes Received: 9566528
+Waf: Entering directory `/home/alfred/Downloads/workspace/bake/source/ns-3.33/build'
+Waf: Leaving directory `/home/alfred/Downloads/workspace/bake/source/ns-3.33/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (0.824s)
+MaxPacketSize: 1480
+Flow ID1 (10.1.1.1 -> 10.1.1.2)
+  Tx Packets: 10000
+  Tx Bytes:   15080000
+  TxOffered:  5753.14 Mbps
+  Rx Packets: 6496
+  Rx Bytes:   9795968
+  Throughput: 644.712 Mbps
+  Average Jitter:  1.69149e-05 s
+  Average Delay:  0.0611994 s
+  Lost packets:  3505 
+  Last packet sent at:  2.02 s
+  Last packet received at:  2.12295 s
+Total Bytes Received: 9614080
