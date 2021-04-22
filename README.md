@@ -47,7 +47,11 @@ We have seen that the buffer could have impacted the performance of these protoc
 In most of the previous works, authors often implement a custom programme to conduct the experiment, we also need to consider the effect of how these software implementations could affect the result, say the interval by which UDP packets are sent, and are there limitation in the language being used as to, for our present purpose, the sending intervals.
 
 ## Objectives
-Given all these considerations, we will use a simple network topology with settings as close to the reality as possible. Where the underlying details such as buffer queue size or protocols, we will use the same for both protocol. As such, we will be comparing TCP and UDP over IPv4 in a wired one-to-one hosts using throughput, average delay and average jitter as our performance indicators
+Given all these considerations, we will use a simple network topology with settings as close to the reality as possible. Where the underlying details such as buffer queue size or protocols, we will use the same for both protocol. As such, we will be comparing TCP and UDP over IPv4 in a wired one-to-one hosts using throughput, average delay and average jitter as our performance indicators.
+
+We will send 10, 100 and `range(1e4, 1e5, 1e4)` packets, each of 1472 Bytes in UDP application and the equivalent number of Bytes in a TCP application to observe the flows of both TCP and UDP applications. 
+
+![Network topology of our study](https://i.imgur.com/nYJBzMb.png)
 
 ### Throughput
 
@@ -131,7 +135,7 @@ Provides communication channel to `Node` and we will be using a CSMA channel (li
 \newpage
 
 # Result
-We will send 10, 100 and`range(1e4, 1e5, 1e4)` packets, each of 1472 Bytes to observe the flows of both TCP and UDP applications. Results are as follows:
+Results are as follows:
 
 ## Throughput
 
@@ -176,6 +180,11 @@ The absence of traffic control in UDP means that the packets will be continuousl
 The `BulkSendApplication` made sure the once the lower layer send buffer is filled, it would wait. So the only place we could drop packets is in the channel which we will need to introduce error into.
 
 `UDPClient` has no such traffic control so we could observe the loss of packets.
+
+## So what might be the reason by which QUIC chose UDP based on our study here ?
+
+Might simply be the throughput (greater throughput) and the jitter (less variation of delay). The larger average delay is mainly due to the lack of traffic control which the QUIC aims to move the “congestional control algorithm into the user space … rather than the kernel space”[^1].
+
 
 # Code
 [https://github.com/alfredtso/ns-3-project](https://github.com/alfredtso/ns-3-project)
