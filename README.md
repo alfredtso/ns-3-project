@@ -185,16 +185,16 @@ The `BulkSendApplication` made sure the once the lower layer send buffer is fill
 # Reference
 
 [ns-3 training resources](https://www.nsnam.org/consortium/activities/training/)
-[QUIC](https://en.wikipedia.org/wiki/QUIC)
+[^1]: [QUIC](https://en.wikipedia.org/wiki/QUIC)
 
-[QUIC GoogleDoc](https://docs.google.com/document/d/1RNHkx_VvKWyWg6Lr8SZ-saqsQx7rFV-ev2jRFUoVD34/edit)
+[^2]: [QUIC GoogleDoc](https://docs.google.com/document/d/1RNHkx_VvKWyWg6Lr8SZ-saqsQx7rFV-ev2jRFUoVD34/edit)
 
-[Yuan-Cheng Lai, Ahsan Ali, Md. Shohrab Hossain, Ying-Dar Lin,Performance modeling and analysis of TCP and UDP flows over software defined networks, Journal of Network and Computer Applications, Volume 130, 2019, Pages 76-88, ISSN 1084-8045](https://doi.org/10.1016/j.jnca.2019.01.010)
+[^3]: [Yuan-Cheng Lai, Ahsan Ali, Md. Shohrab Hossain, Ying-Dar Lin,Performance modeling and analysis of TCP and UDP flows over software defined networks, Journal of Network and Computer Applications, Volume 130, 2019, Pages 76-88, ISSN 1084-8045](https://doi.org/10.1016/j.jnca.2019.01.010)
 
-[Jingyi He, S.-H.Gary Chan, TCP and UDP performance for Internet over optical packet-switched networks, Computer Networks, Volume 45, Issue 4, 2004, Pages 505-521, ISSN 1389-1286](https://doi.org/10.1016/j.comnet.2004.02.011)
+[^4]: [Jingyi He, S.-H.Gary Chan, TCP and UDP performance for Internet over optical packet-switched networks, Computer Networks, Volume 45, Issue 4, 2004, Pages 505-521, ISSN 1389-1286](https://doi.org/10.1016/j.comnet.2004.02.011)
 
-[Eric Gamess, Rina Surós, An upper bound model for TCP and UDP throughput in IPv4 and IPv6, Journal of Network and Computer Applications,Volume 31, Issue 4, 2008, Pages 585-602, ISSN 1084-8045](https://doi.org/10.1016/j.jnca.2007.11.009)
+[^5]: [Eric Gamess, Rina Surós, An upper bound model for TCP and UDP throughput in IPv4 and IPv6, Journal of Network and Computer Applications,Volume 31, Issue 4, 2008, Pages 585-602, ISSN 1084-8045](https://doi.org/10.1016/j.jnca.2007.11.009)
 
-[Shahrudin Awang Nor, Raaid Alubady, Wisam Abduladeem Kamil, Simulated performance of TCP, SCTP, DCCP and UDP protocols over 4G network, Procedia Computer Science, Volume 111, 2017, Pages 2-7, ISSN 1877-0509](https://doi.org/10.1016/j.procs.2017.06.002)
+[^6]: [Shahrudin Awang Nor, Raaid Alubady, Wisam Abduladeem Kamil, Simulated performance of TCP, SCTP, DCCP and UDP protocols over 4G network, Procedia Computer Science, Volume 111, 2017, Pages 2-7, ISSN 1877-0509](https://doi.org/10.1016/j.procs.2017.06.002)
 
 [HTTP/3 draft](https://quicwg.org/base-drafts/draft-ietf-quic-http.html)
