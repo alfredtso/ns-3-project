@@ -25,12 +25,13 @@ main (int argc, char *argv[])
   uint64_t run = 1;
   SeedManager::SetSeed (seed);
   SeedManager::SetRun (run);
-  uint32_t maxBytes = 1500000;
+  uint32_t packetSize = 1472;
+  uint32_t packetCount = 100;
   uint16_t port = 9;
   bool useV6 = false;
   float duration = 120.0;
   uint32_t sendSize = 512;
-  bool tracing = false;
+  bool tracing = true;
 
   Address serverAddress;
 
@@ -38,12 +39,13 @@ main (int argc, char *argv[])
   cmd.AddValue ("useIpv6", "Use Ipv6", useV6);
   cmd.AddValue ("Seed", "Set seed", seed);
   cmd.AddValue ("run", "Number of run", run);
-  cmd.AddValue ("TotalBytes", "Total Number of bytes", maxBytes);
+  cmd.AddValue ("packetCount", "Total Number of bytes", packetCount);
   cmd.AddValue ("Duration", "Duration", duration);
   cmd.AddValue ("SendSize", "The amount of data to send each time", sendSize);
   cmd.AddValue ("Tracing", "Tracing with pcap", tracing);
   cmd.Parse (argc, argv);
 
+  uint32_t maxBytes = packetSize * packetCount;
   //
   // Network Topology
   //
