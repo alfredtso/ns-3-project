@@ -7,7 +7,7 @@
 # Introduction
 Even wonder why Chrome browser feels so much faster than Firefox when watching Youtube videos ? I do and as a curious student i fired up Wireshark and capture some traffic and what i found is this.
 
-![](https://i.imgur.com/8nfNTDN.png)
+![Wireshark Pcap during Youtube browsing](https://i.imgur.com/8nfNTDN.png)
 According to wiki [^1], QUIC is used by more than half of all connections from the Chrome web browser to Google's servers. 
 
 ## What is QUIC
@@ -185,6 +185,7 @@ The `BulkSendApplication` made sure the once the lower layer send buffer is fill
 # Reference
 
 [ns-3 training resources](https://www.nsnam.org/consortium/activities/training/)
+
 [^1]: [QUIC](https://en.wikipedia.org/wiki/QUIC)
 
 [^2]: [QUIC GoogleDoc](https://docs.google.com/document/d/1RNHkx_VvKWyWg6Lr8SZ-saqsQx7rFV-ev2jRFUoVD34/edit)
